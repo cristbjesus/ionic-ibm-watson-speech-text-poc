@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      IBM Watson Speech Test App
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Speech to Text
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card-title>
+        <button ion-button full [color]="audioAssistant.recording ? 'danger' : 'primary'" (click)="toogleRecord()">
+          <ion-icon [name]="audioAssistant.recording ? 'mic-off' : 'mic'" padding-right></ion-icon>
+          {{ audioAssistant.recording ? 'Stop' : 'Start' }} Record
+        </button>
+      </ion-card-title>
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" placeholder="Recognized text" disabled [value]="recognizedText"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Text to Speech
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="textToBeSynthesized" placeholder="Text to be synthesized"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-card-title>
+        <button ion-button full (click)="play()" [disabled]="audioAssistant.recording || !textToBeSynthesized">
+          <ion-icon name="play" padding-right></ion-icon>
+          Play
+        </button>
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
